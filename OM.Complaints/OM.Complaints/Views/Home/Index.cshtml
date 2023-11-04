@@ -1,0 +1,336 @@
+﻿@*@using OM.Shared.Extensions
+*@
+@model OM.Complaints.Models.Complaint
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="sidebar">
+    <div class="widget Label main-heading">
+        <h2>Health Care Product Quality Complaint Form</h2><h4>*indicates required fields</h4>
+
+    </div>
+</div>
+
+<div class="clearfix">&nbsp;</div>
+
+@if (Model.Errors.Count() <= 0)
+{
+    using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "frmComplaint", @class = "well" }))
+    {
+        <div class="container">
+            <div class="span12">
+               <h3>Reporter Information</h3>
+               <div class="row">
+                   <div class="col-md-6">
+                       @Html.LabelFor(m => m.TitleNamePersonFilingComplaint)
+                       <div class="col-md-6">
+                            @Html.TextBoxFor(m => m.TitleNamePersonFilingComplaint, new { @class = "form-control" })
+                           @Html.ValidationMessageFor(m => m.TitleNamePersonFilingComplaint)
+                       </div>
+                   </div>
+                   <div class="col-md-6 pull-right">
+                       @Html.LabelFor(m => m.TeammateResponsibleForAccount)
+                        <div class="col-md-6">
+                            @Html.TextBoxFor(m => m.TeammateResponsibleForAccount, new { @class = "form-control" })
+                           @Html.ValidationMessageFor(m => m.TeammateResponsibleForAccount)
+                       </div>
+                   </div>
+                </div>
+
+               <div class="row">
+                    <div class="col-md-4">
+                                @Html.LabelFor(m => m.Telephone)
+                                <div class="controls col-md-4">
+                            @Html.TextBoxFor(m => m.Telephone, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Telephone)
+                                </div>
+                            </div>
+                            <div class="col-md-6 pull-right">
+                                @Html.LabelFor(m => m.Email)
+                                <div class="controls col-md-6">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email" })
+                                    @Html.ValidationMessageFor(m => m.Email)
+                                </div>
+                            </div>
+                    <div class="col span4 pull-right">
+                                @Html.LabelFor(m => m.CountryOfCompaintOrigin)
+                        <div class="controls col-md-6">
+                            @Html.TextBoxFor(m => m.CountryOfCompaintOrigin, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CountryOfCompaintOrigin)
+                                </div>
+                           </div>
+                </div>
+                        
+               <hr />
+
+               <h3>Dates</h3>
+               <div class="row">
+                    <div class="col span4">
+                        @Html.LabelFor(m => m.DateOfEvent)
+                        <div class="controls col-md-6">
+                            @Html.TextBoxFor(m => m.DateOfEvent, new { @type="date", @class = "form-control datepicker",  @Value = Model.DateOfEvent.ToString("yyyy-MM-dd") })
+                            @Html.ValidationMessageFor(m => m.DateOfEvent)
+                        </div>
+                    </div>
+                    <div class="col span4 pull-right">
+                                @Html.LabelFor(m => m.AlertDate)
+                        <div class="controls col-md-6">
+                            @Html.TextBoxFor(m => m.AlertDate, new { @type="date", @class = "form-control datepicker",  @Value = Model.AlertDate.ToString("yyyy-MM-dd") })
+                                    @Html.ValidationMessageFor(m => m.AlertDate)
+                                </div>
+                            </div>
+                </div>
+
+               <hr />
+
+               <h3>Complaintant: End User/Customer Information/Distributor</h3>
+               <div class="row">
+                    <div class="col span6">
+                        @Html.LabelFor(m => m.FacitityName)
+                        <div class="controls col-md-6">
+                            @Html.TextBoxFor(m => m.FacitityName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.FacitityName)
+                        </div>
+                    </div>
+                    <div class="col span6 pull-right">
+                        @Html.LabelFor(m => m.ContactName)
+                        <div class="controls col-md-6">
+                            @Html.TextBoxFor(m => m.ContactName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ContactName)
+                        </div>
+                    </div>
+                </div>
+               <div class="row">
+                    <div class="col span4">
+                            @Html.LabelFor(m => m.Address)
+                        <div class="controls col-md-6">
+                            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Address)
+                                </div>
+                            </div>
+                    <div class="col span4 pull-right">
+                                @Html.LabelFor(m => m.ContactTelephone)
+                                <div class="controls">
+                            @Html.TextBoxFor(m => m.ContactTelephone, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.ContactTelephone)
+                                </div>
+                            </div>
+                    <div class="col span4 pull-right">
+                                @Html.LabelFor(m => m.ContactEmail)
+                        <div class="controls col-md-4">
+                            @Html.TextBoxFor(m => m.ContactEmail, new { @class = "form-control", @type = "email" })
+                                    @Html.ValidationMessageFor(m => m.ContactEmail)
+                                </div>
+                            </div>
+                </div>
+               <hr />
+
+               <h3>Product Information: Complete (1) Report Per Product Code</h3>
+               <div class="row">
+                    <div class="col span6">
+                            @Html.LabelFor(m => m.ProductCodeSKU)
+                            <div class="controls">
+                            @Html.TextBoxFor(m => m.ProductCodeSKU, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.ProductCodeSKU)
+                            </div>
+                        </div>
+                    <div class="col span6 pull-right">
+                            @Html.LabelFor(m => m.ProductDescriptionBrandName)
+                        <div class="controls col-md-6">
+                            @Html.TextBoxFor(m => m.ProductDescriptionBrandName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.ProductDescriptionBrandName)
+                            </div>
+                        </div>
+                </div>
+               <div class="row">
+                    <div class="col span6">
+                            @Html.LabelFor(m => m.WhenProblemNotice)
+                            <div class="controls">
+                            @Html.DropDownListFor(m => m.WhenProblemNotice, Model.ProblemNoticedList)
+                                @Html.ValidationMessageFor(m => m.WhenProblemNotice)
+                            </div>
+                        </div>
+                    <div class="col span6 pull-right">
+                            @Html.LabelFor(m => m.SterilizationWrap)
+                            <div class="controls">
+                            @Html.DropDownListFor(m => m.SterilizationWrap, Model.SerilizationList)
+                                @Html.ValidationMessageFor(m => m.SterilizationWrap)
+                            </div>
+                        </div>
+.               </div>
+               <div class="row">
+                    <div class="col span6">
+                            @Html.LabelFor(m => m.IncidentDiscoveredDuringPatientCare)
+                            <div class="controls">
+                                @Html.DropDownListFor(m => m.IncidentDiscoveredDuringPatientCare, Model.YesNoList)
+                                @Html.ValidationMessageFor(m => m.IncidentDiscoveredDuringPatientCare)
+                            </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col span12">
+                        @Html.LabelFor(m => m.NatureOfPatientCare)
+                        <div class="controls span12">
+                            @Html.TextBoxFor(m => m.NatureOfPatientCare, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.NatureOfPatientCare)
+                        </div>
+                    </div>
+                </div>
+               <div class="row">
+                    <div class="col span6">
+                           @Html.LabelFor(m => m.Quantity)
+                           <div class="controls">
+                            @Html.DropDownListFor(m => m.Quantity, Model.QuantityList)
+                            @Html.ValidationMessageFor(m => m.Lot)
+
+                           </div>
+                        </div>
+                    <div class="col span4 pull-right">
+                            @Html.LabelFor(m => m.Lot)
+                            <div class="controls">
+                            @Html.TextBoxFor(m => m.Lot, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Lot)
+                            </div>
+                        </div>
+                </div>
+               <div class="row">
+                    <div class="col span12">
+                            @Html.LabelFor(m => m.IncidentDetails)
+                            <div class="controls span12">
+                            @Html.TextBoxFor(m => m.IncidentDetails, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.IncidentDetails)
+                            </div>
+                        </div>
+                </div>
+               <div class="row">
+                    <div class="col span6">
+                            @Html.LabelFor(m => m.WasPatientInjured)
+                           <div class="controls">
+                            @Html.DropDownListFor(m => m.WasPatientInjured, Model.YesNoUnknownList)
+                               @Html.ValidationMessageFor(m => m.WasPatientInjured)
+                           </div>
+                       </div>
+                </div>
+               <div class="row">
+                    <div class="col span12">
+                            @Html.LabelFor(m => m.InjuryDetails)
+                           <div class="controls span12">
+                            @Html.TextBoxFor(m => m.InjuryDetails, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InjuryDetails)
+                           </div>
+                       </div>
+                </div>
+               <div class="row">
+                    <div class="col span6">
+                            @Html.LabelFor(m => m.WasMedicalTreatmentRequired)
+                            <div class="controls">
+                            @Html.DropDownListFor(m => m.WasMedicalTreatmentRequired, Model.YesNoUnknownList)
+                                @Html.ValidationMessageFor(m => m.WasMedicalTreatmentRequired)
+                            </div>
+                        </div>
+                </div>
+               <div class="row">
+                    <div class="col span12">
+                            @Html.LabelFor(m => m.TreatmentDetails)
+                            <div class="controls span12">
+                            @Html.TextBoxFor(m => m.TreatmentDetails, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.TreatmentDetails)
+                            </div>
+                        </div>
+                </div>
+               <div class="row">
+                    <div class="col span12">
+                            @Html.LabelFor(m => m.PatientCurrentStatus)
+                            <div class="controls span12">
+                            @Html.TextBoxFor(m => m.PatientCurrentStatus, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PatientCurrentStatus)
+                            </div>
+                        </div>
+                </div>
+               <div class="row">
+                    <div class="col span6">
+                            @Html.LabelFor(m => m.IsPhotoAvailable)
+                            <div class="controls">
+                                @Html.DropDownListFor(m => m.IsPhotoAvailable, Model.YesNoList)
+                                @Html.ValidationMessageFor(m => m.IsPhotoAvailable)
+                            </div>
+                        </div>
+                    <div class="col span4 pull-right">
+                            @Html.LabelFor(m => m.IsSampleAvailable)
+                            <div class="controls">
+                                @Html.DropDownListFor(m => m.IsSampleAvailable, Model.YesNoList)
+                                @Html.ValidationMessageFor(m => m.IsSampleAvailable)
+                            </div>
+                        </div>
+                    <div class="col span4 pull-right">
+                            @Html.LabelFor(m => m.SampleUsedUnused)
+                            <div class="controls">
+                                @Html.DropDownListFor(m => m.SampleUsedUnused, Model.UsedUnusedList)
+                                @Html.ValidationMessageFor(m => m.SampleUsedUnused)
+                            </div>
+                        </div>
+                </div>
+
+               <h3>Response</h3>
+               <div class="row">
+                        <div class="col span6">
+                            @Html.LabelFor(m => m.InvestigationResponseRequested)
+                            <div class="controls">
+                            @Html.DropDownListFor(m => m.InvestigationResponseRequested, Model.YesNoList)
+                                @Html.ValidationMessageFor(m => m.InvestigationResponseRequested)
+                            </div>
+                        </div>
+                        <div class="col span6 pull-right">
+                            @Html.LabelFor(m => m.ProvidedEmail)
+                            <div class="controls">
+                            @Html.TextBoxFor(m => m.ProvidedEmail, new { @class = "form-control", @type = "email" })
+                                @Html.ValidationMessageFor(m => m.ProvidedEmail)
+                            </div>
+                        </div>
+                        <div class="col span6 pull-right">
+                            @Html.LabelFor(m => m.TranslationLanguage)
+                            <div class="controls">
+                                @Html.DropDownListFor(m => m.TranslationLanguage, Model.TranslationLanguageList)
+                                @Html.ValidationMessageFor(m => m.TranslationLanguage)
+                            </div>
+                        </div>
+                    </div>
+               <div class="row">
+                        <div class="col span6">
+                            @Html.LabelFor(m => m.ReplacementRequested)
+                            <div class="controls">
+                                @Html.DropDownListFor(m => m.ReplacementRequested, Model.YesNoList)
+                                @Html.ValidationMessageFor(m => m.ReplacementRequested)
+                            </div>
+                        </div>
+                        <div class="col span4 pull-right">
+                            @Html.LabelFor(m => m.CreditRequested)
+                            <div class="controls">
+                                @Html.DropDownListFor(m => m.CreditRequested, Model.YesNoList)
+                                @Html.ValidationMessageFor(m => m.CreditRequested)
+                            </div>
+                        </div>
+                    </div>
+               <div class="row">
+                        <div class="col span6">
+                            @Html.LabelFor(m => m.PONumber)
+                            <div class="controls">
+                            @Html.TextBoxFor(m => m.PONumber, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PONumber)
+                            </div>
+                        </div>
+                    </div>
+
+             </div>
+            <hr />
+
+            <div class="row span10">
+                <button class="btn btn-primary pull-right btnSaveComplaint">Submit <i class="icon-ok"></i></button>
+                <a href="@Url.Action("Index", "Home", new { area = "" })" class="btn pull-right mr10">Cancel <i class="icon-ban-circle"></i></a>
+            </div>
+        </div>
+    }
+}
+

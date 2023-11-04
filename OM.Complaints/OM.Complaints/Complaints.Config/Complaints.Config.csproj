@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.NetCore.App" />
+		<PackageReference Include="Colorful.Console" Version="1.2.6">
+			<NoWarn>NU1605</NoWarn>
+		</PackageReference>
+	</ItemGroup>
+	
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.2.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.56.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+  </ItemGroup>
+
+</Project>
